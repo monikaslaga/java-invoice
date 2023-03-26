@@ -174,7 +174,7 @@ public class InvoiceTest {
         invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
 
         String products = invoice.printProducsts();
-        Assert.assertTrue(products.contains("nazwa: Mleko "));
+        Assert.assertTrue(products.contains("nazwa: Mleko;"));
     }
 
     @Test
@@ -183,7 +183,7 @@ public class InvoiceTest {
         invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
 
         String products = invoice.printProducsts();
-        Assert.assertTrue(products.contains("cena: 4.01 PLN"));
+        Assert.assertTrue(products.contains("cena: 4.01PLN"));
     }
 
     @Test

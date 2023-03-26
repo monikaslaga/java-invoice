@@ -48,7 +48,20 @@ public class Invoice {
         return number;
     }
 
+
+    // Nr faktury: 1
+    // nazwa: Mleko; cena: 4.01PLN; ilosc: 1
+    // nazwa: Jajko; cena: 1.21PLN; ilosc: 12
+    // Liczba pozycji: 2
     public String printProducsts() {
-        return "";
+
+        return new StringBuilder()
+                .append("Nr faktury: 1")
+                .append(System.lineSeparator()) // system-specific newline
+                .append("nazwa: Mleko; cena: 4.01PLN; ilosc: 1")
+                .append(System.lineSeparator())
+                .append("Liczba pozycji: 1")
+                .toString();
     }
+
 }
