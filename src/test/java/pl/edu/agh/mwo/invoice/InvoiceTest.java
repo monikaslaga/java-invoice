@@ -195,6 +195,17 @@ public class InvoiceTest {
         Assert.assertTrue(products.contains("ilosc: 1"));
     }
 
+    @Test
+    public void testInvoiceProductPrintContainsCorrectInvoiceNumber() {
+        Invoice invoice1 = new Invoice();
+        Invoice invoice2 = new Invoice();
+
+        invoice2.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
+
+        String products = invoice2.printProducsts();
+        Assert.assertTrue(products.contains("Nr faktury: 2"));
+    }
+
     // Nr faktury: 1
     // nazwa: Mleko; cena: 4.01PLN; ilosc: 1
     // nazwa: Jajko; cena: 1.21PLN; ilosc: 12
