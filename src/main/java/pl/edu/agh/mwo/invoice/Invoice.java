@@ -11,6 +11,9 @@ public class Invoice {
     private static int nextNumber = 0;
     private final int number = ++nextNumber;
 
+    static void resetInvoiceNumber(){
+        nextNumber = 0;
+    }
     public void addProduct(Product product) {
         addProduct(product, 1);
     }
@@ -56,7 +59,7 @@ public class Invoice {
     public String printProducsts() {
 
         return new StringBuilder()
-                .append("Nr faktury: 1")
+                .append("Nr faktury: " + number)
                 .append(System.lineSeparator()) // system-specific newline
                 .append("nazwa: Mleko; cena: 4.01PLN; ilosc: 1")
                 .append(System.lineSeparator())

@@ -18,6 +18,7 @@ public class InvoiceTest {
     @Before
     public void createEmptyInvoiceForTheTest() {
         invoice = new Invoice();
+        Invoice.resetInvoiceNumber();
     }
 
     @Test
@@ -197,12 +198,14 @@ public class InvoiceTest {
 
     @Test
     public void testInvoiceProductPrintContainsCorrectInvoiceNumber() {
+
         Invoice invoice1 = new Invoice();
         Invoice invoice2 = new Invoice();
 
         invoice2.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
 
         String products = invoice2.printProducsts();
+        System.out.println(products);
         Assert.assertTrue(products.contains("Nr faktury: 2"));
     }
 
