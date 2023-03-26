@@ -260,12 +260,31 @@ public class InvoiceTest {
         invoice.addProduct(new DairyProduct("Woda", new BigDecimal("2")), 6);
         //when
         String products = invoice.printProducsts();
-        System.out.println(products);
         //then
         Assert.assertTrue(products.contains("ilosc: 1"));
         Assert.assertTrue(products.contains("ilosc: 3"));
         Assert.assertTrue(products.contains("ilosc: 6"));
     }
+
+/**
+ * Jeżeli do faktury dodamy dwa razy taki sam produkt -
+ * nie powinna pojawić się na niej druga pozycja,
+ * ale liczba sztuk dodanego już wcześniej produktu powinna zostać odpowiednio zwiększona.
+ */
+@Test
+public void testInvoiceProductPrintContainsDuplicateProducts() {
+    //given
+    Invoice invoice = new Invoice();
+    invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
+    invoice.addProduct(new DairyProduct("Chleb", new BigDecimal("5")), 12);
+    invoice.addProduct(new DairyProduct("Woda", new BigDecimal("2")), 6);
+    invoice.addProduct(new DairyProduct("Woda", new BigDecimal("2")), 6);
+    //when
+    String products = invoice.printProducsts();
+    System.out.println(products);
+    //then
+    Assert.assertTrue(products.contains("Nazwa: Woda; cena: 2PLN; ilosc: 12"));
+}
 
 
     // Nr faktury: 1

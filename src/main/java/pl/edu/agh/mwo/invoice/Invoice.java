@@ -23,7 +23,14 @@ public class Invoice {
         if (product == null || quantity <= 0) {
             throw new IllegalArgumentException();
         }
-        products.put(product, quantity);
+        // sprawdzic czy produkt jest juz w mapie
+        if (products.containsKey(product)) {
+            //jesli tak: dodać ilość do obecnej wartości
+            products.replace(product, products.get(product) + quantity);
+        } else {
+            // jesli nie - po prostu go dodać
+            products.put(product, quantity);
+        }
     }
 
     public BigDecimal getNetTotal() {
