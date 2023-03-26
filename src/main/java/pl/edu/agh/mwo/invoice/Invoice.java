@@ -63,7 +63,7 @@ public class Invoice {
                 .append(System.lineSeparator()) // system-specific newline
                 .append("nazwa: Mleko; cena: 4.01PLN; ilosc: 1")
                 .append(System.lineSeparator())
-                .append("Liczba pozycji: 1")
+                .append("Liczba pozycji: "+ products.size())
                 .toString();
     }
 

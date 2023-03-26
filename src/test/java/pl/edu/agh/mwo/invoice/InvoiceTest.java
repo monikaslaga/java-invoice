@@ -209,6 +209,21 @@ public class InvoiceTest {
         Assert.assertTrue(products.contains("Nr faktury: 2"));
     }
 
+
+    @Test
+    public void testInvoiceProductPrintContainsCorrectNumberOfPositions() {
+
+        Invoice invoice = new Invoice();
+
+        invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
+        invoice.addProduct(new DairyProduct("Chleb", new BigDecimal("5")), 3);
+        invoice.addProduct(new DairyProduct("Woda", new BigDecimal("2")), 6);
+
+        String products = invoice.printProducsts();
+        System.out.println(products);
+        Assert.assertTrue(products.contains("Liczba pozycji: 3"));
+    }
+
     // Nr faktury: 1
     // nazwa: Mleko; cena: 4.01PLN; ilosc: 1
     // nazwa: Jajko; cena: 1.21PLN; ilosc: 12
