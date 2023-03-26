@@ -11,9 +11,10 @@ public class Invoice {
     private static int nextNumber = 0;
     private final int number = ++nextNumber;
 
-    static void resetInvoiceNumber(){
+    static void resetInvoiceNumber() {
         nextNumber = 0;
     }
+
     public void addProduct(Product product) {
         addProduct(product, 1);
     }
@@ -51,20 +52,34 @@ public class Invoice {
         return number;
     }
 
+    private String productList() {
+        StringBuilder sb = new StringBuilder();
+        products.forEach((product, quantity) -> {
+            sb.append("Nazwa: " + product.getName() + "; cena: " + product.getPrice() + "PLN; ilosc: " + quantity);
+            sb.append(System.lineSeparator());
+        });
+        return sb.toString();
+    }
 
-    // Nr faktury: 1
-    // nazwa: Mleko; cena: 4.01PLN; ilosc: 1
-    // nazwa: Jajko; cena: 1.21PLN; ilosc: 12
-    // Liczba pozycji: 2
+    private void productRow(Product p, Integer i) {
+    }
+
+
     public String printProducsts() {
 
         return new StringBuilder()
                 .append("Nr faktury: " + number)
                 .append(System.lineSeparator()) // system-specific newline
-                .append("nazwa: Mleko; cena: 4.01PLN; ilosc: 1")
-                .append(System.lineSeparator())
-                .append("Liczba pozycji: "+ products.size())
+                .append(productList())
+                .append("Liczba pozycji: " + products.size())
                 .toString();
     }
+
+    // Nr faktury: 1
+    // Nazwa: Mleko; cena: 4.01PLN; ilosc: 1
+    // Nazwa: Jajko; cena: 1.21PLN; ilosc: 12
+    // Nazwa: Chleb; cena: 5.21PLN; ilosc: 2
+
+    // Liczba pozycji: 2
 
 }
