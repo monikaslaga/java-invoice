@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import pl.edu.agh.mwo.invoice.Invoice;
 import pl.edu.agh.mwo.invoice.product.DairyProduct;
 import pl.edu.agh.mwo.invoice.product.OtherProduct;
 import pl.edu.agh.mwo.invoice.product.Product;
@@ -150,4 +149,55 @@ public class InvoiceTest {
         int number2 = new Invoice().getNumber();
         Assert.assertThat(number1, Matchers.lessThan(number2));
     }
+
+    @Test
+    public void testInvoiceProductPrintContainsInvoiceNumber() {
+        Invoice invoice = new Invoice();
+        String products = invoice.printProducsts();
+        Assert.assertTrue(products.contains("Nr faktury: 1"));
+    }
+
+    @Test
+    public void testInvoiceProductPrintContainsNumbersOfPositions() {
+        // given
+        Invoice invoice = new Invoice();
+        invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
+        // when
+        String products = invoice.printProducsts();
+        // then
+        Assert.assertTrue(products.contains("Liczba pozycji: 1"));
+    }
+
+    @Test
+    public void testInvoiceProductPrintContainsProductName() {
+        Invoice invoice = new Invoice();
+        invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
+
+        String products = invoice.printProducsts();
+        Assert.assertTrue(products.contains("nazwa: Mleko "));
+    }
+
+    @Test
+    public void testInvoiceProductPrintContainsProductPrice() {
+        Invoice invoice = new Invoice();
+        invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
+
+        String products = invoice.printProducsts();
+        Assert.assertTrue(products.contains("cena: 4.01 PLN"));
+    }
+
+    @Test
+    public void testInvoiceProductPrintContainsProductQuantity() {
+        Invoice invoice = new Invoice();
+        invoice.addProduct(new DairyProduct("Mleko", new BigDecimal("4.01")), 1);
+
+        String products = invoice.printProducsts();
+        Assert.assertTrue(products.contains("ilosc: 1"));
+    }
+
+    // Nr faktury: 1
+    // nazwa: Mleko; cena: 4.01PLN; ilosc: 1
+    // nazwa: Jajko; cena: 1.21PLN; ilosc: 12
+    // Liczba pozycji: 2
+
 }

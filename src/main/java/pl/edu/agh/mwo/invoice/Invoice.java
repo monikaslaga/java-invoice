@@ -47,4 +47,8 @@ public class Invoice {
     public int getNumber() {
         return number;
     }
+
+    public String printProducsts() {
+        return "";
+    }
 }
